@@ -5,7 +5,7 @@ import ru.netology.domain.Movie;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class MovieManagerTestWithoutSetup {
+class MovieManagerTest {
 
     private Movie one = new Movie(1, "img1", "one", "one");
     private Movie two = new Movie(2, "img2", "two", "two");
@@ -20,7 +20,20 @@ public class MovieManagerTestWithoutSetup {
     private Movie eleven = new Movie(11, "img11", "eleven", "eleven");
 
     @Test
-    public void shouldGetTenMovies() {
+    void shouldGetAll() {
+        Movie[] expected = new Movie[]{three, two, one};
+
+        MovieManager manager = new MovieManager();
+        manager.add(one);
+        manager.add(two);
+        manager.add(three);
+        Movie[] actual = manager.getAll();
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldGetDefMovies() {
         Movie[] expected = new Movie[]{ten, nine, eight, seven, six, five, four, three, two, one};
 
         MovieManager manager = new MovieManager();
@@ -35,6 +48,21 @@ public class MovieManagerTestWithoutSetup {
         manager.add(nine);
         manager.add(ten);
         manager.add(eleven);
+        Movie[] actual = manager.getSomeMovies();
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldGetLengthMovies() {
+        Movie[] expected = new Movie[]{five, four, three, two, one};
+
+        MovieManager manager = new MovieManager();
+        manager.add(one);
+        manager.add(two);
+        manager.add(three);
+        manager.add(four);
+        manager.add(five);
         Movie[] actual = manager.getSomeMovies();
 
         assertArrayEquals(expected, actual);
@@ -82,5 +110,17 @@ public class MovieManagerTestWithoutSetup {
         assertArrayEquals(expected, actual);
     }
 
+    @Test
+    void shouldAddMovie() {
+        Movie[] expected = new Movie[]{four, three, two, one};
 
+        MovieManager manager = new MovieManager();
+        manager.add(one);
+        manager.add(two);
+        manager.add(three);
+        manager.add(four);
+        Movie[] actual = manager.getAll();
+
+        assertArrayEquals(expected, actual);
+    }
 }
