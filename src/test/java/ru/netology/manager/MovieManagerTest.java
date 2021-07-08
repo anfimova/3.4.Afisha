@@ -33,7 +33,7 @@ class MovieManagerTest {
     }
 
     @Test
-    void shouldGetDefMovies() {
+    void shouldGetMoreDefMovies() {
         Movie[] expected = new Movie[]{ten, nine, eight, seven, six, five, four, three, two, one};
 
         MovieManager manager = new MovieManager();
@@ -54,7 +54,7 @@ class MovieManagerTest {
     }
 
     @Test
-    void shouldGetLengthMovies() {
+    void shouldGetLessDefMovies() {
         Movie[] expected = new Movie[]{five, four, three, two, one};
 
         MovieManager manager = new MovieManager();
@@ -69,7 +69,27 @@ class MovieManagerTest {
     }
 
     @Test
-    public void shouldGetLessTen() {
+    void shouldGetDefMovies() {
+        Movie[] expected = new Movie[]{ten, nine, eight, seven, six, five, four, three, two, one};
+
+        MovieManager manager = new MovieManager();
+        manager.add(one);
+        manager.add(two);
+        manager.add(three);
+        manager.add(four);
+        manager.add(five);
+        manager.add(six);
+        manager.add(seven);
+        manager.add(eight);
+        manager.add(nine);
+        manager.add(ten);
+        Movie[] actual = manager.getSomeMovies();
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldGetFiveIfMore() {
         Movie[] expected = new Movie[]{five, four, three, two, one};
 
         MovieManager manager = new MovieManager(5);
@@ -90,7 +110,35 @@ class MovieManagerTest {
     }
 
     @Test
-    public void shouldGetMoreTen() {
+    public void shouldGetLessFiveIfLess() {
+        Movie[] expected = new Movie[]{three, two, one};
+
+        MovieManager manager = new MovieManager(5);
+        manager.add(one);
+        manager.add(two);
+        manager.add(three);
+        Movie[] actual = manager.getSomeMovies();
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldGetFiveIfFive() {
+        Movie[] expected = new Movie[]{five, four, three, two, one};
+
+        MovieManager manager = new MovieManager(5);
+        manager.add(one);
+        manager.add(two);
+        manager.add(three);
+        manager.add(four);
+        manager.add(five);
+        Movie[] actual = manager.getSomeMovies();
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldGetEleven() {
         Movie[] expected = new Movie[]{eleven, ten, nine, eight, seven, six, five, four, three, two, one};
 
         MovieManager manager = new MovieManager(11);
